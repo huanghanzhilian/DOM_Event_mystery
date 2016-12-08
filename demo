@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	.nihao {
+		font-size: 15px;
+		padding: 10px 0 0 15px;
+	}
+	#drxs {
+		width: 300px;
+		height: 150px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		border: 1px solid #e8e8e8;
+		margin: -120px 0 0 -150px;
+		display: none;
+		border: 1px solid #ccc;
+		border-radius: 5px;/*圆角*/
+		box-shadow: 0 0 5px #ccc;/*阴影0水平阴影 0垂直阴影 5px阴影模糊程度 #ccc阴影颜色*/
+		overflow: hidden;
+	}
+	#drxs p {
+		color: #FFF;
+		font-size: 12px;
+		background: #1c92c7;
+		height: 30px;
+		line-height: 30px;
+		padding: 0 0 0 5px;
+		border-bottom: 1px solid #eee;
+	}
+	#gb {
+		width: 14px;
+		height: 14px;
+		cursor: pointer;
+		position: absolute;
+		top: 9px;
+		right: 6px;
+	}
+	#gb:before, #gb:after {
+		content: '';
+		position: absolute;
+		right: -3px;
+		top: 7px;
+		width: 19px;
+		height: 1px;
+		background: #ccc;
+		-webkit-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		transform: rotate(45deg);
+		transition: all .5s;
+	}
+	#gb:after {
+		-webkit-transform: rotate(-45deg);
+		-moz-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		-o-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+	}
+	#gb:hover:before, #gb:hover:after {
+
+		/*-webkit-transform: rotate(225deg);*/
+
+		/*-moz-transform: rotate(225deg);*/
+
+		/*-ms-transform: rotate(225deg);*/
+
+		/*-o-transform: rotate(225deg);*/
+		background: #f00;
+	}
+	img {
+		width: 299px;
+		height: 120px;
+	}
+</style>
+<script type="text/javascript">
+window.onload = function() {
+	var dr = document.getElementById("dr");
+	var drxs = document.getElementById("drxs");
+	var gb = document.getElementById("gb");
+
+	function hh(gg, jj, ll) {
+		if (gg.addEventListener) {
+			gg.addEventListener(jj, ll, false);
+		} else if (gg.attachEvent) {
+			gg.attachEvent('on' + jj, ll);
+		} else {
+			gg['on' + jj] = ll;
+		}
+	}
+
+	// 显示登录层函数
+	function showLogin() {
+		// 执行代码
+		drxs.style.display = 'block';
+		login_box.className = 'anim_fadeInDown speed_fast animated';
+	}
+
+	// 隐藏登录层函数
+	function hideLogin() {
+		// 执行代码
+		drxs.style.display = 'none'
+	}
+	hh(dr, 'click', showLogin);
+	//点击关闭按钮隐藏登录层
+	// 执行代码
+	hh(gb, 'click', hideLogin);
+}
+</script>
+</head>
+
+<body>
+<div class="nihao">亲，你好！<input type="button" value="登 入" id="dr"></div>
+<div id="drxs">
+    <p>用户登入<span id="gb"></span></p>
+    <img src="images/ffg.jpg">
+</div>
+</body>
+</html>
