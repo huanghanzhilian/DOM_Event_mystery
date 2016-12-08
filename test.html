@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>事件兼容</title>
+</head>
+<body>
+	<div id="box">
+		<a id="box_a" href="http://www.huanghanlian.com/">按钮</a>
+	</div>
+	<script type="text/javascript">
+
+		var box = document.getElementById('box');
+		var box_a = document.getElementById('box_a');
+
+		box.onclick=function(){
+			alert('我是整个父盒子');
+		}
+
+		box_a.onclick=function(e){
+			var e = getEvent(e);    //为了兼容所有浏览器调用getEvent(e)返回event或者window.event
+			//e=e||window.event;
+			alert(getTarget(e));    //弹出事件的目标元素
+			preventDefault(e);      //取消事件默认行为
+			stopPropagation(e)      //可以取消事件冒泡
+		};
+		//返回event或者window.event
+		function getEvent(e) {
+			return e || window.event;
+		}
+		//事件的目标元素
+		function getTarget(e) {
+			return e.target || e.scrElement;
+		}
+		//取消事件默认行为
+		function preventDefault(e) {
+			if (e.preventDefault)
+				e.preventDefault();
+			else
+				e.returnValue = false;
+		}
+		//可以取消事件冒泡
+		function stopPropagation(e) {
+			if (e.stopPropagation)
+				e.stopPropagation();
+			else
+				e.cancelBubble = true;
+		}
+
+
+	</script>
+</body>
+</html>
